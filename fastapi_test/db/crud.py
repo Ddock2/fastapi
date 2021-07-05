@@ -9,6 +9,14 @@ def get_items_by_id(db: Session, item_id: int):
 def get_items_by_name(db: Session, item_name: str, skip: int = 0, limit: int = 100):
     return db.query(models.Item).filter(models.Item.name == item_name).offset(skip).limit(limit).all()
 
+def get_license(db: Session):
+    return db.query(models.License).all()
+
+# insert
+def insert_item(db: Session, item: schemas.Item):
+    insertItem = models.Item(item.id, item.name)
+    return db.add(insertItem)
+
 
 # def get_user(db: Session, user_id: int):
 #     return db.query(models.User).filter(models.User.id == user_id).first()

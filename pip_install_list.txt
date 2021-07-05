@@ -1,0 +1,1 @@
+pip install uvicorn fastapi sqlalchemy jinja2 psycopg2

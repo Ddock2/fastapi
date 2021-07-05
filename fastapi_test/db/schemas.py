@@ -5,7 +5,7 @@ from pydantic import BaseModel
 
 class ItemBase(BaseModel):
     id: int
-    name: str
+    name: Optional[str] = None
     def printObject():
         print(str(id) + " " + name)
 
@@ -18,6 +18,12 @@ class Item(ItemBase):
     
     def idName():
         super().printObject()
+
+
+class License(BaseModel):
+    id : int
+    companyname : str
+    hostname :str
 
 # class ItemBase(BaseModel):
 #     title: str

@@ -1,0 +1,69 @@
+<!doctype html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>AddressBook Vue.js</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+        <script src="https://unpkg.com/vue"></script>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    </head>
+
+    <body>
+        <div class="container w-75 mx-auto mt-5">
+            <H2>AddressBook::List</H2>
+            <HR>
+                <a href="" class="btn btn-info">New Entry</a>
+                <P>
+
+                <div id="app">
+                <table class="table table-hover table-striped">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>#No</th>
+                            <th>Name</th>
+                            <th>CellPhone</th>
+                            <th>Birth Date</th>
+                            <th>Company</th>
+                            <th>Memo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                        <td><a href="">{{ab.ab_id}}</a></td>
+                        <td>{{ab.ab_name}}</td>
+                        <td>{{ab.ab_tel}}</td>
+                        <td>{{ab.ab_birth}}</td>
+                        <td>{{ab.ab_comdept}}</td>
+                        <td>{{ab.ab_memo}}</td>
+                        
+                    </tbody>
+                </table>
+            	</div>
+			</div>
+			
+            <script>          
+                var ex = new Vue( {
+                    el: '#app',
+                    data: { 
+                        datas: []
+                    },
+                    computed: {
+                    hasResult: function () {
+                        return this.posts.length > 0
+                    }
+                    },
+                    created: function(){
+                        const baseURI = 'http://localhost:8080/javaweb/api/addrbook';
+                        axios.get(`${baseURI}/list`)
+                        .then((result) => {
+                        console.log(result)
+                        this.datas = result.data
+                        }
+                    )}
+                });
+            </script>    
+        </body>
+    </html>
